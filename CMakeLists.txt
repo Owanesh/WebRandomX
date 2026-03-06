@@ -184,10 +184,7 @@ else()
   set(COMPAT_LINK_FLAGS "-mno-bulk-memory -mno-sign-ext -mno-nontrapping-fptoint")
 endif()
 
-set(COMMON_LINK_FLAGS "-os -s WASM=1 -s MODULARIZE=1 -s WASM_BIGINT -s TOTAL_MEMORY=272MB ${COMPAT_LINK_FLAGS} -s EXPORTED_FUNCTIONS=\"['_free', '_malloc']\"")
-if(RANDOMX_NO_SIMD)
-  set(COMMON_LINK_FLAGS "${COMMON_LINK_FLAGS} -s EXPORTED_RUNTIME_METHODS=\"['HEAPU8']\"")
-endif()
+set(COMMON_LINK_FLAGS "-os -s WASM=1 -s MODULARIZE=1 -s WASM_BIGINT -s TOTAL_MEMORY=272MB ${COMPAT_LINK_FLAGS} -s EXPORTED_FUNCTIONS=\"['_free', '_malloc']\" -s EXPORTED_RUNTIME_METHODS=\"['HEAPU8']\"")
 
 set_target_properties(web-randomx PROPERTIES LINK_FLAGS "${COMMON_LINK_FLAGS}")
 
